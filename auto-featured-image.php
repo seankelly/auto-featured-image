@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Auto Featured Image
  * Description: Automatically select a featured image for a post based on the post's category and tags.
- * Version: 0.1.0
+ * Version: 0.1.1
  * Author: Sean Kelly
  * License: GPL2+
  */
@@ -64,12 +64,22 @@ class AutoFeaturedImage {
 	private function check_slugs($postid, $what, $slugs) {
 		sort($slugs);
 
+		// Put all of the image ids into an array and shuffle the
+		// array. Pick the first element from the shuffled array and
+		// return it.
+		$available_ids = array();
 		foreach ($slugs as $slug) {
 			$image_id = $this->find_image($what, $slug);
 			if (is_int($image_id)) {
-				$this->set_thumbnail_id($postid, $image_id);
-				return $image_id;
+				$available_ids[] = $image_id;
 			}
+		}
+
+		if (count($available_ids) > 0) {
+			shuffle($available_ids);
+			$image_id = $available_ids[0];
+			$this->set_thumbnail_id($postid, $image_id);
+			return $image_id;
 		}
 	}
 
