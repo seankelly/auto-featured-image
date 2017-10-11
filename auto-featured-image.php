@@ -19,8 +19,6 @@ class AutoFeaturedImage {
 	}
 
 	public function publish_post($postid) {
-		$post = get_post($postid);
-
 		// If the post already has a featured image set, don't do anything.
 		if (has_post_thumbnail($postid)) {
 			return;
