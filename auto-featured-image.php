@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Auto Featured Image
+ * Plugin Name: Automatic Featured Image
  * Description: Automatically select a featured image for a post based on the post's category and tags.
- * Version: 0.1.1
+ * Version: 1.0.0
  * Author: Sean Kelly
  * License: GPL2+
  */
