@@ -15,7 +15,19 @@ class AutoFeaturedImage {
 	}
 
 	public function init() {
+		// Facebook Auto Publish uses the transition_post_status action
+		// with a priority of 10. Use a lower priority to go first.
+		add_action('transition_post_status', array($this, 'transition_post'), 5, 3);
 		add_action('publish_post', array($this, 'publish_post'));
+	}
+
+	public function transition_post($new_status, $old_status, $post) {
+		if ($new_status !== 'publish') {
+			return;
+		}
+
+		$postid = $post->ID;
+		$this->publish_post($postid);
 	}
 
 	public function publish_post($postid) {
