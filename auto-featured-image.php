@@ -95,7 +95,7 @@ class AutoFeaturedImage {
 
 	private function find_image($what, $slug) {
 		$title_filter = "active $what $slug";
-		add_filter('posts_where', array($this, media_where_filter), 10, 2);
+		add_filter('posts_where', array($this, 'media_where_filter'), 10, 2);
 		$images = new WP_Query(array(
 			'post_type' => 'attachment',
 			'post_status' => 'inherit',
@@ -104,7 +104,7 @@ class AutoFeaturedImage {
 			'posts_per_page' => 1,
 			'auto_featured_image_slug' => $title_filter,
 		));
-		remove_filter('posts_where', array($this, media_where_filter), 10, 2);
+		remove_filter('posts_where', array($this, 'media_where_filter'), 10, 2);
 
 		if ($images->have_posts()) {
 			return $images->posts[0]->ID;
