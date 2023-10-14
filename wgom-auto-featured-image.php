@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Automatic Featured Image
+ * Plugin Name: WGOM Automatic Featured Image
  * Description: Automatically select a featured image for a post based on the post's category and tags.
  * Version: 1.0.0
  * Author: Sean Kelly
